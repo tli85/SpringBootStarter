@@ -30,7 +30,7 @@ public class LibraryController {
 
     @PostMapping(value = "/api/books")
     public ResponseEntity<Book> addNewBook(@RequestBody Book newBook) {
-        Book newAddedBook = new Book(id++, newBook.getAuthor(), newBook.getTitle(), newBook.getPublishingYear());
+        Book newAddedBook = new Book(id++, newBook.getAuthor(), newBook.getTitle(), newBook.getYearPublished());
         repo.save(newAddedBook);
         return new ResponseEntity<>(newAddedBook, HttpStatus.CREATED);
     }

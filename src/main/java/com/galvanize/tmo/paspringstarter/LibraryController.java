@@ -36,11 +36,11 @@ public class LibraryController {
     }
 
     @GetMapping("/api/books")
-    public String retrieveAll()
+    public List<Book> retrieveAll()
     {
         List<Book> books = repo.retrieveAll();
         books.sort(Comparator.comparing(Book::getTitle));
-        return "{ books :" +  books + " }";
+        return books;
     }
 
     @DeleteMapping(value = "/api/books")

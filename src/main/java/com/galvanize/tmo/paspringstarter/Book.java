@@ -14,11 +14,11 @@ public class Book {
         this.yearPublished = yearPublished;
     }
 
-    public int getId() {return id; }
+    public int getId() { return id; }
 
-    public String getAuthor() {return author; }
+    public String getAuthor() { return author; }
 
-    public String getTitle() {return title; }
+    public String getTitle() { return title; }
 
-    public int getYearPublished() {return yearPublished; }
+    public int getYearPublished() { return yearPublished; }
 }

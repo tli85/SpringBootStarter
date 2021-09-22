@@ -15,7 +15,7 @@ import java.util.List;
 public class LibraryController {
 
     //Library Repo
-    private LibraryRepo repo = new LibraryRepo();
+    private BooksRepo repo = new BooksRepo();
     private int id = 1;
 
     @GetMapping("/health")
@@ -28,26 +28,25 @@ public class LibraryController {
         return "This is Home page";
     }
 
-    @PostMapping(value = "/api/books")
+    @PostMapping("/api/books")
     public ResponseEntity<Book> addNewBook(@RequestBody Book newBook) {
         Book newAddedBook = new Book(id++, newBook.getAuthor(), newBook.getTitle(), newBook.getYearPublished());
-        repo.save(newAddedBook);
+        repo.addBook(newAddedBook);
         return new ResponseEntity<>(newAddedBook, HttpStatus.CREATED);
     }
 
     @GetMapping("/api/books")
-    public LibraryRepo retrieveAll()
+    public BooksRepo getBooks()
     {
-        List<Book> books = repo.retrieveAll();
+        List<Book> books = repo.getBooks();
         books.sort(Comparator.comparing(Book::getTitle));
         return repo;
     }
 
-    @DeleteMapping(value = "/api/books")
-    public ResponseEntity<HttpStatus> deleteAll()
+    @DeleteMapping("/api/books")
+    public ResponseEntity<HttpStatus> removeBooks()
     {
-        repo.deleteAll();
-        id = 1;
+        repo.clear();
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
